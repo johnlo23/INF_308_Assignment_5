@@ -1,7 +1,9 @@
-# Collect user info
+# CINF-308 Fall 2022
+# Assignment 5 Collect user info
+# John Logiudice
 
 
-# Add User
+# Add User Information
 def add_user(users):
     # Get details about the new user to add
     name = input("Enter a new user name: ")
@@ -14,6 +16,8 @@ def add_user(users):
     while name.lower() in user_name_list:
         print("Sorry, that user name is already used.")
         name = input("Please enter another user name: ")
+
+    print()
 
     # Get user information
     print("Name details")
@@ -39,6 +43,8 @@ def add_user(users):
                    'location': (city, state)
                    }))
 
+    print(f"User {name} has been added to the list.")
+    print()
 
 # Show user list
 def show_user_list(users):
