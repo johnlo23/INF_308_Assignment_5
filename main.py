@@ -6,7 +6,7 @@
 # Add User Information
 def add_user(users):
     # Get details about the new user to add
-    name = input("Enter a new user name: ")
+    name = input("Enter a new user name: ").strip()
 
     # List comprehension creates temp list of all user names
     user_name_list = [users[i]['user'].lower() for i in range(0, len(users))]
@@ -15,24 +15,27 @@ def add_user(users):
     # Convert user name to lowercase for case-insensitive match
     while name.lower() in user_name_list:
         print("Sorry, that user name is already used.")
-        name = input("Please enter another user name: ")
+        name = input("Please enter another user name: ").strip()
 
+    while len(name) == 0:
+        print("Sorry, user name cannot be blank.")
+        name = input("Please enter another user name: ").strip()
     print()
 
     # Get user information
     print("Name details")
-    first = input("Enter the first name: ")
-    last = input("Enter the last name: ")
+    first = input("Enter the first name: ").strip()
+    last = input("Enter the last name: ").strip()
     print()
 
     print("Personal description")
-    eyes = input("Enter the eye color: ")
-    hair = input("Enter the hair color: ")
+    eyes = input("Enter the eye color: ").strip()
+    hair = input("Enter the hair color: ").strip()
     print()
 
     print("Location")
-    city = input("Enter the city name: ")
-    state = input("Enter the state abbreviation: ")
+    city = input("Enter the city name: ").strip()
+    state = input("Enter the state abbreviation: ").strip()
     print()
 
     # Add user details dictionary to the list
@@ -126,7 +129,8 @@ while True:
     print("- - - - - - - -")
     print("1. Add a new user")
     print("2. Show user information")
-    print("3. Quit")
+    print("3. Sort user list")
+    print("4. Quit")
     print()
 
     user_choice = input("Enter the number of your choice: ")
@@ -141,11 +145,19 @@ while True:
     elif user_choice == '2':
         show_user_list(user_list)
         print()
-        show_user_details(user_list, find_user(user_list, input("Enter the user name or number: ")))
+        show_user_details(user_list, find_user(user_list, input("Enter the user name or number: ").strip()))
+        print()
+
+    # Sort user list
+    elif user_choice == '3':
+        # Sorts by value of dictionary key 'user'
+        user_list.sort(key=lambda user: user['user'])
+        print("User list has been sorted by user name.")
+        show_user_list(user_list)
         print()
 
     # Quit
-    elif user_choice == '3':
+    elif user_choice == '4':
         print('Goodbye')
         break
 
